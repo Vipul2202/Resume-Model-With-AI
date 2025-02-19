@@ -7,11 +7,16 @@ import SignInPage from './auth/sign-in/index.jsx'
 import Home from './home/index.jsx'
 import Dashboard from './dashboard/index.jsx'
 import { ClerkProvider } from '@clerk/clerk-react'
-import EditResume from './dashboard/resume/[resumeId]/edit/index.jsx'
 import ViewResume from './my-resume/[resumeId]/view/index.jsx'
+import EditResume from './dashboard/resume/[resumeId]/edit/index.jsx'
 
+// import ViewResume from './my-resume/[resumeId]/view/index.jsx'
+
+// eslint-disable-next-line no-undef
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
-const router=createBrowserRouter([
+console.log("my env key", PUBLISHABLE_KEY)
+const router=createBrowserRouter(
+  [
   {
     path:'/',
     element:<Home/>
@@ -34,16 +39,21 @@ const router=createBrowserRouter([
     path:'/auth/sign-in',
     element:<SignInPage/>
   },
+
   {
     path:'/my-resume/:resumeId/view',
     element:<ViewResume/>
+
+
   }
-])
+  
+]
+)
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
      <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
       <RouterProvider router={router} />
     </ClerkProvider>
-  </React.StrictMode>,
+  </React.StrictMode>
 )

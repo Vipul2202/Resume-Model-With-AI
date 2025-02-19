@@ -11,9 +11,9 @@ import {
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { v4 as uuidv4 } from 'uuid';
-import GlobalApi from './../../../service/GlobalApi'
-import { useUser } from '@clerk/clerk-react'
-import { Navigate, useNavigate } from 'react-router-dom'
+import GlobalApi from './../../../service/GlobalApi';
+import { useUser } from '@clerk/clerk-react';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 
@@ -24,6 +24,7 @@ function AddResume() {
     const {user}=useUser();
     const [loading,setLoading]=useState(false);
     const navigation=useNavigate();
+    
     const onCreate=async()=>{
         setLoading(true)
         const uuid=uuidv4();
@@ -41,7 +42,7 @@ function AddResume() {
             if(resp)
             {
                 setLoading(false);
-                navigation('/dashboard/resume/'+resp.data.data.documentId+"/edit");
+                navigation('/dashboard/resume/'+uuid+"/edit");
             }
         },(error)=>{
             setLoading(false);
